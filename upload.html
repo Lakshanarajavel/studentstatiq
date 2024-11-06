@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srisakthi College Form</title>
+    <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="collegeForm" onsubmit="saveFormData(event)">
+                <h2>Student Details</h2>
+
+                <!-- Name of the Student -->
+                <label for="name">Name of the Student</label>
+                <input type="text" id="name" name="name" required>
+
+                <!-- CGPA -->
+                <label for="CGPA">CGPA</label>
+                <input type="text" id="CGPA" name="CGPA" required>
+
+                <!-- Level -->
+                <label for="level">Level</label>
+                <input type="text" id="level" name="level" required>
+
+                <!-- Language -->
+                <label for="language">Language</label>
+                <input type="text" id="language" name="language" required>
+
+                <!-- Domain -->
+                <label for="domain">Domain</label>
+                <input type="text" id="domain" name="domain" required>
+
+                <!-- Standing Arrears -->
+                <label for="standingArrears">Standing Arrears</label>
+                <input type="text" id="standingArrears" name="standingArrears" required>
+
+                <!-- History of Arrears -->
+                <label for="historyOfArrears">History of Arrears</label>
+                <input type="text" id="historyOfArrears" name="historyOfArrears" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function saveFormData(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const studentData = {
+                name: document.getElementById('name').value,
+                CGPA: document.getElementById('CGPA').value,
+                level: document.getElementById('level').value,
+                language: document.getElementById('language').value,
+                domain: document.getElementById('domain').value,
+                standingArrears: document.getElementById('standingArrears').value,
+                historyOfArrears: document.getElementById('historyOfArrears').value
+            };
+
+            // Get existing data from localStorage
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+
+            // Add new student data
+            students.push(studentData);
+
+            // Store updated data in localStorage
+            localStorage.setItem('students', JSON.stringify(students));
+
+            // Redirect to the student filter page
+            window.location.href = "studentFilter.html";
+        }
+    </script>
+</body>
+</html>
